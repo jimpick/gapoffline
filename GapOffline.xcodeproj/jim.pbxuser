@@ -2,16 +2,17 @@
 {
 	0714B1ED0E45393600039BAB /* url.txt */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {945, 659}}";
+			sepNavIntBoundsRect = "{{0, 0}, {948, 430}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 25}";
+			sepNavVisRange = "{0, 157}";
+			sepNavWindowFrame = "{{38, 194}, {750, 558}}";
 		};
 	};
 	1D3623250D0F684500981E51 /* GlassAppDelegate.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {656, 2632}}";
+			sepNavIntBoundsRect = "{{0, 0}, {656, 2604}}";
 			sepNavSelRange = "{620, 40}";
-			sepNavVisRange = "{214, 768}";
+			sepNavVisRange = "{156, 898}";
 		};
 	};
 	1D6058900D05DD3D006BFB54 /* GapOffline */ = {
@@ -104,16 +105,14 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 240616963;
-			PBXWorkspaceStateSaveDate = 240616963;
+			PBXPerProjectTemplateStateSaveDate = 240617411;
+			PBXWorkspaceStateSaveDate = 240617411;
 		};
 		perUserProjectItems = {
 			3896E1910E5785F800D048A3 = 3896E1910E5785F800D048A3 /* PBXTextBookmark */;
-			3896E1B80E57861F00D048A3 /* PBXTextBookmark */ = 3896E1B80E57861F00D048A3 /* PBXTextBookmark */;
-			3896E1C60E57865700D048A3 /* PBXTextBookmark */ = 3896E1C60E57865700D048A3 /* PBXTextBookmark */;
+			3896E1CA0E5787C200D048A3 = 3896E1CA0E5787C200D048A3 /* PBXTextBookmark */;
 			38E4DB630E57845C00CC1646 = 38E4DB630E57845C00CC1646 /* PlistBookmark */;
 			38E4DB640E57845C00CC1646 = 38E4DB640E57845C00CC1646 /* PlistBookmark */;
-			38E4DB650E57845C00CC1646 = 38E4DB650E57845C00CC1646 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 38AE890C0E576C2000DA5294 /* Source Control */;
 		userBuildSettings = {
@@ -137,24 +136,14 @@
 		vrLen = 872;
 		vrLoc = 184;
 	};
-	3896E1B80E57861F00D048A3 /* PBXTextBookmark */ = {
+	3896E1CA0E5787C200D048A3 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 1D3623250D0F684500981E51 /* GlassAppDelegate.m */;
 		name = "GlassAppDelegate.m: 24";
 		rLen = 40;
 		rLoc = 620;
 		rType = 0;
-		vrLen = 768;
-		vrLoc = 214;
-	};
-	3896E1C60E57865700D048A3 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1D3623250D0F684500981E51 /* GlassAppDelegate.m */;
-		name = "GlassAppDelegate.m: 24";
-		rLen = 40;
-		rLoc = 620;
-		rType = 0;
-		vrLen = 768;
+		vrLen = 813;
 		vrLoc = 214;
 	};
 	38AE89010E576BFF00DA5294 /* GapOffline */ = {
@@ -215,16 +204,6 @@
 		name = "/Users/jim/projects/distributed-wiki/gapoffline/Info.plist";
 		rLen = 0;
 		rLoc = 2147483647;
-	};
-	38E4DB650E57845C00CC1646 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1D3623250D0F684500981E51 /* GlassAppDelegate.m */;
-		name = "GlassAppDelegate.m: 24";
-		rLen = 40;
-		rLoc = 620;
-		rType = 0;
-		vrLen = 788;
-		vrLoc = 239;
 	};
 	8D1107310486CEB800E47090 /* Info.plist */ = {
 		uiCtxt = {

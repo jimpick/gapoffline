@@ -1,1 +1,1 @@
-http://jimpick.com/test/
+data:text/html;charset=utf-8;base64,PGh0bWw+CjxoZWFkPgo8dGl0bGU+VGVzdDwvdGl0bGU+CjwvaGVhZD4KPGJvZHk+CjxoMT5UZXN0PC9oMT4KMS4uMi4uMy4uCjwvYm9keT4KPC9odG1sPgo=
