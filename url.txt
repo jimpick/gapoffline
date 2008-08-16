@@ -1,1 +1,1 @@
-http://phonegap.com/demo/index.html
+http://jimpick.com/test/
