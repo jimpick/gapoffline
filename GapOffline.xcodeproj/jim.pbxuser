@@ -1,5 +1,12 @@
 // !$*UTF8*$!
 {
+	1D3623250D0F684500981E51 /* GlassAppDelegate.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {522, 2590}}";
+			sepNavSelRange = "{620, 40}";
+			sepNavVisRange = "{362, 565}";
+		};
+	};
 	1D6058900D05DD3D006BFB54 /* GapOffline */ = {
 		activeExec = 0;
 		executables = (
@@ -52,12 +59,28 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
+			PBXConfiguration.PBXFileTableDataSource3.PBXSymbolsDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXSymbolsDataSource_SymbolNameID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					16,
+					200,
+					50,
+					281,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXSymbolsDataSource_SymbolTypeIconID,
+					PBXSymbolsDataSource_SymbolNameID,
+					PBXSymbolsDataSource_SymbolTypeID,
+					PBXSymbolsDataSource_ReferenceNameID,
+				);
+			};
 			PBXConfiguration.PBXTargetDataSource.PBXTargetDataSource = {
 				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					301,
+					438,
 					60,
 					20,
 					48,
@@ -74,8 +97,12 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 240612689;
-			PBXWorkspaceStateSaveDate = 240612689;
+			PBXPerProjectTemplateStateSaveDate = 240614364;
+			PBXWorkspaceStateSaveDate = 240614364;
+		};
+		perUserProjectItems = {
+			38E4DB570E577E3C00CC1646 /* PBXTextBookmark */ = 38E4DB570E577E3C00CC1646 /* PBXTextBookmark */;
+			38E4DB580E577E3C00CC1646 /* PBXTextBookmark */ = 38E4DB580E577E3C00CC1646 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 38AE890C0E576C2000DA5294 /* Source Control */;
 		userBuildSettings = {
@@ -125,6 +152,24 @@
 	38AE890D0E576C2000DA5294 /* Code sense */ = {
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
+	};
+	38E4DB570E577E3C00CC1646 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "warning: class 'GlassAppDelegate' does not implement the 'UINavigationControllerDelegate' protocol";
+		fRef = 1D3623250D0F684500981E51 /* GlassAppDelegate.m */;
+		rLen = 1;
+		rLoc = 23;
+		rType = 1;
+	};
+	38E4DB580E577E3C00CC1646 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* GlassAppDelegate.m */;
+		name = "GlassAppDelegate.m: 24";
+		rLen = 40;
+		rLoc = 620;
+		rType = 0;
+		vrLen = 565;
+		vrLoc = 362;
 	};
 	8D1107310486CEB800E47090 /* Info.plist */ = {
 		uiCtxt = {
