@@ -1,0 +1,317 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>myDailyPhoto</title>
+<meta name="viewport" content="width=320; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<link rel="apple-touch-icon" href="images/icon.png" />
+<style type="text/css">
+/* GLOBAL CSS */
+body {
+	margin: 0px;
+	padding: 0px;
+	background-color: #7B351C;
+	font-family: Helvetica, "Lucida Grande", Verdana, Arial, sans-serif;
+	font-size: 14px;
+	color: #FFF;
+}
+a {
+	color: #FFF;
+}
+img {
+	border-width: 0px;
+}
+input {
+	width: 260px;
+	background-color: #FFF;
+	font-size: 18px;
+	margin: 10px 0px 0px 0px;
+}
+.center {
+	text-align: center;
+}
+.fontSmall {
+	font-size: 12px;
+}
+.bold {
+	font-weight: bold;
+}
+
+/* GLOBAL FLICK CONTAINER */
+#container {
+	width: 320px;
+	min-height: 180px;
+}
+
+/* ALL FLICK DIVs */
+#container div {
+	display: none;
+	position: absolute;
+	top: 10px;
+	left: 490px;
+	width: 280px;
+	height: 180px;
+	padding: 10px;
+	background-color: #AD4A2A;
+	-webkit-border-radius: 5px;
+//	height: 316px; Override this for now because we don't have vertical scrolling enabled
+//	NOTE: The currently displaying DIV has overrides for DISPLAY and LEFT attributes in its STYLE tag
+}
+
+/* IPHONE ANIMATION API CLASSES */
+.divRtC {
+	-webkit-animation-name: 'RtC';
+	-webkit-animation-duration: 1s;
+}
+.divCtL {
+	-webkit-animation-name: 'CtL';
+	-webkit-animation-duration: 1s;
+}
+.divLtC {
+	-webkit-animation-name: 'LtC';
+	-webkit-animation-duration: 1s;
+}
+.divCtR {
+	-webkit-animation-name: 'CtR';
+	-webkit-animation-duration: 1s;
+}
+@-webkit-keyframes 'RtC' {
+	from { left: 490px; }
+	to { left: 10px; }
+}
+@-webkit-keyframes 'CtL' {
+	from { left: 10px; }
+	to { left: -490px; }
+}
+@-webkit-keyframes 'LtC' {
+	from { left: -490px; }
+	to { left: 10px; }
+}
+@-webkit-keyframes 'CtR' {
+	from { left: 10px; }
+	to { left: 490px; }
+}
+
+/* THE DEBUG RESULTS */
+#debug {
+	position: absolute;
+	top: 220px;
+	left: 10px;
+	width: 300px;
+}
+</style>
+<script type="text/javascript">
+
+/*****************************************************
+
+ TERMS OF USE
+
+ You may freely use, distribute, and modify this code
+ for any purpose, so long as you attribute the code as
+ follows:
+
+ Author:                              Matthew Congrove
+ More Information:               mydailyphoto.com/blog
+
+******************************************************/
+
+/*****************************************************
+
+ NOTICE:
+ 
+ Vertical scrolling is disabled using the Touch API
+ (Line 154: e.preventDefault). This means that it is
+ impossible for a user to access the window location
+ bar on the iPhone, so please be kind and provide some
+ sort of 'Close' button, or modify the script to suit
+ your needs, as well as those of your users.
+ 
+ NOTICE:
+ 
+ All debugging code is clearly marked as such. Just
+ search for 'Debug'.
+ 
+ MORE INFORMATION:
+ 
+ For a complete tutorial on how this code works,
+ please visit the myDailyPhoto blog entry --
+ 
+ mydailyphoto.com/blog/iphone-safari-flick-navigation
+
+******************************************************/
+
+var touching, dPrevious, dCurrent, dNext, oX;
+
+// Whether or not the finger is touching the screen
+touching = false;
+
+// Original X-coordinate
+oX = 0;
+
+// Initial page numbers
+dPrevious = 0;
+dCurrent = 1;
+dNext = 2;
+
+// Apple iPhone Touch API events
+document.addEventListener('touchstart', touchHandler, false);
+document.addEventListener('touchmove', touchHandler, false);
+document.addEventListener('touchend', touchHandler, false);
+document.addEventListener('touchcancel', touchHandler, false);
+
+// The handler for all Apple iPhone Touch API events
+function touchHandler(e) {
+	// Prevent the default scrolling behaviour (notice: This disables vertical scrolling as well)
+	e.preventDefault();
+	
+	// If the user has started a touch event
+	if (e.type == "touchstart") {
+		touching = true;
+		// If there's only one finger touching
+		if (e.touches.length == 1) {
+			var touch = e.touches[0];
+			// If they user tries clicking on a link
+			if(touch.target.onclick) {
+				touch.target.onclick();
+			}
+			// The originating X-coord (point where finger first touched the screen)
+			oX = touch.pageX;
+			// Reset default values for current X-coord and scroll distance
+			nX = 0;
+			scrollX = 0;
+			/* Debugging */ document.getElementById('dir').innerHTML = 'Direction: Null';
+			/* Debugging */ document.getElementById('oX').innerHTML = 'Start X-Coord: '+oX+'px';
+		}
+	}
+	// If the user has touched the screen and moved the finger
+	else if (e.type == "touchmove") {
+		// If there's only one finger touching
+		if (e.touches.length == 1) {
+			var touch = e.touches[0];
+			// The current X-coord of the users finger
+			var nX = touch.pageX;
+			/* Debugging */ document.getElementById('nX').innerHTML = 'Current X-Coord: '+nX+'px';
+			
+			// If the user moved the finger from the right to the left
+			if (oX > nX) {
+				// Find the scrolling distance
+				var scrollX = oX-nX;
+				/* Debugging */ document.getElementById('scrollX').innerHTML = 'Scroll Distance: '+scrollX+'px';
+				// If the user scrolled more than 100 pixels
+				if (scrollX > 100) {
+					/* Debugging */ document.getElementById('dir').innerHTML = 'Direction: Flicked Left';
+					// If the next DIV exists then continue
+					if (document.getElementById('Div'+dNext)) {
+						// If this is still from the original touch
+						if (touching == true)
+						{
+							// End the current touch
+							touching = false;
+							// Move in the next DIV
+							switchNext(dCurrent,dNext);
+							// Recalculate the pages
+							dPrevious = dCurrent;
+							dCurrent = dNext;
+							dNext = dNext+1;
+							/* Debugging */ alertIt();
+						}
+					}
+				}
+			// If the user moved the finger from the left to the right
+			} else {
+				// Find the scrolling distance
+				var scrollX = nX-oX;
+				/* Debugging */ document.getElementById('scrollX').innerHTML = 'Scroll Distance: '+scrollX+'px';
+				// If the user scrolled more than 100 pixels
+				if (scrollX > 100) {
+					/* Debugging */ document.getElementById('dir').innerHTML = 'Direction: Flicked Right';
+					// If the previous page isn't 0, in other words there's a previous page to the left
+					if (dPrevious != 0) {
+						// If this is still from the original touch
+						if (touching == true) {
+							// End the current touch
+							touching = false;
+							// Move in the previous DIV
+							switchPrevious(dCurrent,dPrevious);
+							// Recalculate the pages
+							dNext = dCurrent;
+							dCurrent = dPrevious;
+							dPrevious = dPrevious-1;
+							/* Debugging */ alertIt();
+						}
+					}
+				}
+			}
+		}
+	}
+	// If the user has removed the finger from the screen
+	else if (e.type == "touchend" || e.type == "touchcancel") {
+		// Defines the finger as not touching
+		touching = false;
+	}
+}
+// If the user requests the page to the right of the screen ('next' DIV)
+function switchNext(divOut,divIn) {
+	// Show the DIV to the right
+	document.getElementById('Div'+divIn).style.display = 'block';
+	// Move the currently displaying DIV from Center to Left
+	document.getElementById('Div'+divOut).className = 'divCtL';
+	// Move the requested DIV from the Right to Center
+	document.getElementById('Div'+divIn).className = 'divRtC';
+	// For some reason the animation doesn't stick after exiting this function, so force the off-screen location
+	document.getElementById('Div'+divOut).style.left = '-490px';
+	// For some reason the animation doesn't stick after exiting this function, so force the on-screen location
+	document.getElementById('Div'+divIn).style.left = '10px';
+}
+// If the user requests the page to the left of the screen ('previous' DIV)
+function switchPrevious(divOut,divIn) {
+	// Show the DIV to the left
+	document.getElementById('Div'+divIn).style.display = 'block';
+	// Move the currently displaying DIV from Center to Right
+	document.getElementById('Div'+divOut).className = 'divCtR';
+	// Move the requested DIV from the Left to Center
+	document.getElementById('Div'+divIn).className = 'divLtC';
+	// For some reason the animation doesn't stick after exiting this function, so force the off-screen location
+	document.getElementById('Div'+divOut).style.left = '490px';
+	// For some reason the animation doesn't stick after exiting this function, so force the on-screen location
+	document.getElementById('Div'+divIn).style.left = '10px';
+}
+/* Debug Results Display DIV */
+function alertIt() {
+	document.getElementById('divPrev').innerHTML = 'Previous Page: '+dPrevious;
+	document.getElementById('divCurrent').innerHTML = 'Current Page: '+dCurrent;
+	document.getElementById('divNext').innerHTML = 'Next Page: '+dNext;
+}
+</script>
+</head>
+<body>
+<div id="container">
+
+	<div id="Div1" style="display: block; left: 10px;">
+		<img src="http://i.mydailyphoto.com/icon.png" align="left" style="padding-right: 5px;" /> This is a myDailyPhoto iPhone test application utilizing the Apple iPhone Touch Javascript API, along with the new CSS transitions and animations provided by WebKit.<br /><br />Try flicking your fingers on the screen, as you would while viewing your iPhone photo library, to change the content.
+	</div>
+	<div id="Div2">
+		Each of these content containers is simple a DIV with a unique, sequentially numbered ID, e.g. 'Div1', 'Div2', and so-on. To add more content containers simply add a new DIV and number all of the DIVs accordingly. At this time, because the CSS transitions are based on classes, you must style each DIV using it's ID or do it inline. It would not be too difficult to intelligently add / remove the transition classes to any existing classes, though.
+	</div>
+	
+	<div id="Div3">
+		The code for this demonstration is all static and loads along with the entire body. It would be rather simple, though, to make an AJAX request to retrieve data from a database or external flat file. Because the incoming DIV moves into view fairly quickly (1s transitions), it is suggested that you pre-load at least one DIV that would come next upon flicking. It may be advisable to pre-load more than this number, but this is up to your discretion.
+	</div>
+	<div id="Div4">
+		For more information about this test application please visit the myDailyPhoto Development Blog at <a href="http://mydailyphoto.com/blog">mydailyphoto.com/blog</a>.<br /><br /><span class="fontSmall">Application by Matthew Congrove.</span>
+	</div>
+	
+</div>
+
+<!-- Debug Results -->
+<div id="debug">
+	<div id="dir" style="font-weight: bold;">Direction: Null</div><br />
+	<div id="oX">Start X-Coord: Null</div>
+	<div id="nX">Current X-Coord: Null</div>
+	<div id="scrollX">Scroll Distance: Null</div>
+	<div id="divPrev">Previous Page: Null</div>
+	<div id="divCurrent">Current Page: Null</div>
+	<div id="divNext">Next Page: Null</div>
+</div>
+	
+</body>
+</html>
